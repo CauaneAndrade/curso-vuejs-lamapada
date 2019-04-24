@@ -1,0 +1,13 @@
+.bordinha{
+	border: solid;
+}
+.vermelho{
+	color: red;
+}
+.icone{
+	height: 30px;
+	widows: 30px;
+}
+.risca {
+      text-decoration: line-through;
+    }

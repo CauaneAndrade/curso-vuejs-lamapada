@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <title>Minha terceira aplicação Vue :)</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+    {{ message_botao }} <br>
+    <!--atalho para o v-on -> @ -->
+    <button @click="onbotao()">Clique-me</button><hr>
+
+
+    <select v-on:change="onselect($event)">
+        <option value="vazio"></option>
+        <option value="olá">olá</option>
+        <option value="fala aí">fala aí</option>
+        <option value="oi">oi</option>
+    </select>
+    {{ message_select }} <hr>
+
+
+    {{ message_botao_rows }} <br>
+    <button v-on:click="onbotaorows()">Clique-me para aumentar</button>
+    <button v-on:click="onbotaorowsdiminuir()">Clique-me para diminuir</button>
+    <!--atalho para o v-bind -> : -->
+    <textarea :rows="linhas"></textarea>
+    <textarea v-bind:rows="linhas"></textarea>
+
+    </div>
+
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message_botao: 'Clique no botão!',
+                message_select: 'selecione uma opção!',
+                message_botao_rows: 'Clique no botão para aumentar as linhas!',
+                linhas: 1,
+            },
+            methods:{
+                onbotao: function(){
+                    this.message_botao = "Você clicou no botão!"
+                },
+                onselect: function(evt){
+                    this.message_select = "Mudou a opção do select";
+                },
+                onbotaorows: function(){
+                    this.message_botao_rows = "aumentou em mais 1 a quantidade de linhas"
+                    this.linhas++;
+                },
+                onbotaorowsdiminuir: function(){
+                    this.message_botao_rows = "diminuiu em 1 a quantidade de linhas"
+                    this.linhas--;
+                },
+
+            }
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <title>Minha quarta aplicação Vue :)</title>
+    <script src="vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <div id="app">
+        <input type="checkbox" v-model="valor1">valor1 <br>
+        <input type="checkbox" v-model="valor2">valor2 <br>
+        <input type="checkbox" v-model="valor3">valor3 <br>
+        <!-- se v-if for falso é excluído a tag do html
+        ou seja: nem renderiza na tela -->
+        <!-- se v-show for falso é adicionado o "display: none;" no html -->
+        <span v-if="valor1" :class="{bordinha: valor1, vermelho: valor1}">v-if</span> <br>
+        <span v-show="valor2">v-show</span> <br>
+
+        <img src="https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwi1zsSiteThAhVUDrkGHbO0BzIQjRx6BAgBEAU&url=%2Furl%3Fsa%3Di%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dimages%26cd%3D%26cad%3Drja%26uact%3D8%26ved%3D%26url%3Dhttps%253A%252F%252Fmedium.com%252Ftrainingcenter%252Fvuejs-init-uma-abordagem-inicial-sobre-a-biblioteca-javascript-vuejs-b2490771f05c%26psig%3DAOvVaw0I5dquv8M9H1HanZx1UAn_%26ust%3D1556047075898881&psig=AOvVaw0I5dquv8M9H1HanZx1UAn_&ust=1556047075898881"
+
+        class="icone"
+        :style="{transform: 'rotate('+angulo+'deg)'}">
+        <button @click="girar()">Giraaa!</button>
+
+    </div>
+
+    <script type="text/javascript">
+        /*var é uma variável global, pois não está dentro de nenhuma função*/
+        var app = new Vue({
+            el: '#app',
+            data: {
+                valor1: false,
+                valor2: false,
+                valor3: false,
+                angulo: 40,
+            },
+            methods:{
+                girar: function(){
+                    setInterval(function(){
+                        this.angulo++;
+                    }, 10)
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

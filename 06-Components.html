@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>Meu sexta aplicativo Vue</title>
+  <script src="vue.js"></script>
+  <link rel="stylesheet" href="css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+  <div id="app" class="container" style="padding: 20px;">
+    <div class="field">
+      <label class="label">Github username</label>
+      <div class="control">
+        <input class="input" 
+          type="text" 
+          placeholder="Github username"
+          v-model="username"
+          @keyup.enter="listar_repositorios()">
+      </div>
+      <div class="control">
+
+  <div class="select" :class="{'is-loading': loading_repos}">
+    <select v-model="selected_repo" @change="listar_issue()">
+      <option v-for="repo in repos">{{repo.name}}</option>
+    </select>
+  </div>
+
+</div>
+    </div>
+  <todo-table :tarefas="tarefas"></todo-table>
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+
+  <script src="./TODOTable.js"></script>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        username: '',
+        repos: [],
+        selected_repo: null,
+        loading_repos: false,
+        tarefas: [
+          // {tarefa: 'Lavar a roupa', feita: false},
+          // {tarefa: 'Trocar a fralda do neném', feita: true},
+          // {tarefa: 'Passear com o cachorro', feita: false},
+        ]
+      },
+      methods: {
+        listar_repositorios: function(){
+        //fazer requisição ajax para https://api.github.com/users/${username}/repos
+        var self = this;
+        self.loading_repos = true;
+        axios.get(`https://api.github.com/users/${this.username}/repos`).then(function(result){
+          self.repos = result.data;
+          self.loading_repos = false;
+        })
+       },
+       listar_issue: function(){
+        
+       }
+        
+      },
+    });
+  </script>
+</body>
+</html>

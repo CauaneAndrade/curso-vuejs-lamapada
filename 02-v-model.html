@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <title>Minha segunda aplicação Vue</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+
+        <!--caso eu digite um número, o v-model.number 
+            automaticamente atualiza o tipo de variável 
+            para némero (int ou float)-->
+        <input type="text" v-model.number="valor1"><br>
+        {{valor1}}: {{tipo_da_variavel(valor1)}} <br>
+        
+        <!--v-model.lazy só atualiza quando clica fora do campo,
+            ao contrário dos outros sem o .lazy que atualizam a 
+            cada caracter que se escreve-->
+
+        <!--O .trim tira os espaços em torno do que foi escrito -->
+        <textarea v-model.lazy.trim="valor2"></textarea><br>
+        {{valor2}}: {{tipo_da_variavel(valor2)}} <br>
+        
+        <input type="checkbox" v-model="valor3"><br>
+        {{valor3}}: {{tipo_da_variavel(valor1)}} <br>
+
+        <select v-model="valor4">
+            <option value="vazio"></option>
+            <option value="olá">olá</option>
+            <option value="fala aí">fala aí</option>
+            <option value="oi">oi</option>
+        </select>
+        {{valor4}}: {{tipo_da_variavel(valor4)}} <br>
+
+        <input type="radio" v-model="valor5" value="bom dia">bom dia <br>
+        <input type="radio" v-model="valor5" value="boa tarde">bom tarde <br>
+        <input type="radio" v-model="valor5" value="boa noite">bom noite <br>
+        {{valor5}}: {{tipo_da_variavel(valor5)}}
+
+    </div>
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                /*message é um atributo, a partir da criação do objeto "Vue"*/
+                valor1: null,
+                valor2: null,
+                valor3: null,
+                valor4: null,
+                valor5: null,
+            },
+            methods:{
+                tipo_da_variavel: function(x){
+                    return typeof(x);
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>
